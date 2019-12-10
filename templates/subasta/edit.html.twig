@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Artidulo{% endblock %}
+
+{% block body %}
+    <h1>Editar Subasta</h1>
+
+    <div class="container">
+    {{ include('subasta/_form.html.twig', {'button_label': 'Actualizar'}) }} 
+   {{ include('subasta/_delete_form.html.twig') }}
+    </br>
+</div> 
+
+    <a href="{{ path('subasta_index') }}">
+        <button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button></a>
+
+    
+
+    
+
+{% endblock %}

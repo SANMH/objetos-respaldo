@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo articulo Subasta{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="color:white;">
+    <h1>Crear nuevo articulo</h1>
+
+    {{ include('subasta/_form.html.twig') }}
+    </br>
+    <a href="{{ path('subasta_index') }}"><button type="button" class="btn btn-secondary btn-lg">Regresar a la lista</button></a>
+</div>
+{% endblock %}

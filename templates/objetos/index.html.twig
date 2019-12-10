@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objetos index{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="color:white;">
+    <h1>OBJETOS</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Descripcion</th>
+            <th>Fecha</th>
+            <th>Facultad</th>
+            <th>Usuario</th>
+            <th>Imagen</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for objeto in objetos %}
+            <tr>
+                <td>{{ objeto.id }}</td>
+                <td>{{ objeto.name }}</td>
+                <td>{{ objeto.descripcion }}</td>
+                <td>{{ objeto.fecha ? objeto.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ objeto.facultad.name}}</td>
+                <td>{{ objeto.user }}</td>
+                <td><img src="{{ vich_uploader_asset(objeto, 'imageFile') }}" alt="{{ objeto.name }}" height="60" /></td>
+
+                <td>
+                    <a href="{{ path('objetos_show', {'id': objeto.id}) }}">show</a>
+                    <a href="{{ path('objetos_edit', {'id': objeto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning" href="{{ path('objetos_new') }}">Crear Nuevo</a>
+</div>
+{% endblock %}

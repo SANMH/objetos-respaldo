@@ -1,0 +1,24 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<div class="container" style="color: black;">
+        
+{% include "@FOSUser/Registration/register_content.html.twig" %}
+
+
+</div>
+
+
+{% endblock fos_user_content %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login2.css') }}">
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Objetos{% endblock %}
+
+{% block body %}
+    <div class="container" style="color:white;">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-12">
+                <h1>Ingresar Nuevo</h1>
+
+                {{ include('objetos/_form.html.twig') }}
+                <br>
+                <a class="btn btn-danger" href="{{ path('objetos_index') }}">Regresar</a>
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

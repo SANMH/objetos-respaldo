@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Oferta{% endblock %}
+
+{% block body %}
+
+    <h1>Haga su Oferta</h1>
+    
+    {{ include('oferta/_form.html.twig') }}
+</br>
+<a href="{{ path('subasta_index') }}">
+<button type="button" class="btn btn-secondary btn-lg">Regresar a la Tienda
+    </button></a>
+
+{% endblock %}

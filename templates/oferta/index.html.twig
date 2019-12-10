@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oferta index{% endblock %}
+
+{% block body %}
+
+<p><button onclick="sortTable()">Ordenar</button></p>
+<h1>Oferta index</h1>
+<div class="datagrid">
+
+
+    <table border="1" id="mitabla">
+        <thead>
+            <tr>
+                
+                 
+                    <th>Id_Subasta</th>
+                    <th>Objeto</th>
+                    <th>Usario</th>
+                    <th>Cuanto</th>
+                    <th>acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for ofertum in ofertas %}
+            <tr>
+                    
+                
+                <td><h3>{{ ofertum.subasta.id }}</h3></td>
+                <td><h3>{{ ofertum.subasta.nombre }}</h3></td>
+                <td><h3>{{ ofertum.user}}</h3></td>
+                <td><h3>{{ ofertum.cuanto }}</h3></td>
+                <td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    
+                        <a href="{{ path('oferta_show', {'id': ofertum.id}) }}">
+    
+                          <button type="button" class="btn btn-warning">Mostrar</button></a>
+    
+                        <a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">
+    
+                          <button type="button" class="btn btn-success">Editar</button></a>
+    
+                        <a href="{{ path('oferta_delete', {'id': ofertum.id}) }}">
+    
+                          <button type="button" class="btn btn-danger">eliminar</button></a>
+    
+                    {% endif %}
+                </td>
+
+                
+            </tr>
+
+
+            {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</br>
+<a href="{{ path('oferta_new') }}">
+    <button type="button" class="btn btn-primary"> Nuevo </button></a>
+  </br>
+</br>
+    <a href="{{ path('subasta_index') }}">
+        <button type="button" class="btn btn-secondary btn-lg">Regresar a la Tienda
+            </button></a>
+
+
+<!-- Ordenar los elementos-->
+<script>
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("mitabla");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</script>
+
+
+{% endblock %}
